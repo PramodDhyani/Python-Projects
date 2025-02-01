@@ -1,32 +1,32 @@
 from kivy.app import App
-from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.tabbedpanel import TabbedPanel
+from kivy.uix.tabbedpanel import TabbedPanelItem
+from kivy.uix.label import Label
+
+class MyTabbedPanel(TabbedPanel):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)  # Call the parent class constructor
+        self.size_hint = (0.8, 0.8)  # Set size of the TabbedPanel
+        self.pos_hint = {'center_x': 0.5, 'center_y': 0.5}  # Positioning the TabbedPanel
+
+        # Add first tab
+        tab1 = TabbedPanelItem(text="Tab 1")  # Create a Tab
+        tab1.content = Label(text="This is content for Tab 1")  # Set content for Tab 1
+        self.add_widget(tab1)  # Add the tab to TabbedPanel
+
+        # Add second tab
+        tab2 = TabbedPanelItem(text="Tab 2")
+        tab2.content = Label(text="This is content for Tab 2")
+        self.add_widget(tab2)
+
+        # Add third tab
+        tab3 = TabbedPanelItem(text="Tab 3")
+        tab3.content = Label(text="This is content for Tab 3")
+        self.add_widget(tab3)
 
 class MyApp(App):
-    def on_button_click(self, instance):
-        # This will print the text of the button that was clicked
-        print(f"{instance.text} button clicked!")
-
     def build(self):
-        layout = BoxLayout(orientation='vertical')
+        return MyTabbedPanel()  # Return the TabbedPanel widget to be displayed
 
-        # Create multiple buttons
-        button1 = Button(text="Button 1")
-        button2 = Button(text="Button 2")
-        button3 = Button(text="Button 3")
-
-        # Bind the same method to all buttons
-        button1.bind(on_press=self.on_button_click)
-        button2.bind(on_press=self.on_button_click)
-        button3.bind(on_press=self.on_button_click)
-
-        # Add buttons to layout
-        layout.add_widget(button1)
-        layout.add_widget(button2)
-        layout.add_widget(button3)
-
-        return layout
-
-# Run the app
 if __name__ == "__main__":
-    MyApp().run()
+    MyApp().run()  # Run the application
