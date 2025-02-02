@@ -1,0 +1,16 @@
+<MyLayout>:
+    orientation: "vertical"
+    padding: 20
+    spacing: 10
+
+    TextInput:
+        id: input_text  # Assign an ID to access text
+        hint_text: "Enter something..."
+        size_hint_y: None
+        height: 50
+
+    Button:
+        text: "Click Me"
+        size_hint_y: None
+        height: 50
+        on_press: app.button_clicked()  # Calls the function on click
